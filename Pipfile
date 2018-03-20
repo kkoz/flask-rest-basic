@@ -1,0 +1,23 @@
+[[source]]
+
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+
+[dev-packages]
+
+
+
+[packages]
+
+flask = "*"
+flask-jwt-extended = "*"
+flask-restful = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
+
+
+[requires]
+
+python_version = "3.5"
