@@ -26,3 +26,20 @@ class User(db.Model):
   def check_password(self, password):
     return check_password_hash(self.password_hash, password)
 
+  @classmethod
+  def return_all(cls):
+    def to_json(x):
+      return {
+        'username' : x.username,
+        'password' : x.password
+      }
+    return {'users': list(map(lambda x: to_json(x), User.query.all()))}
+
+  @classmethod
+  def delete_all(cls):
+    try:
+      num_rows_deleted = db.session.query(cls).delete()
+      db.session.commit()
+      return {'status': 'success', 'message': '{} rows deleted'.format(num_rows_deleted)}
+    except:
+      return {'status': 'error', 'message': 'Unknown error'}
